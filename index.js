@@ -39,10 +39,18 @@ app.post('/', function(req, res){
 
     const options = {
         method: "POST",
-        auth: "aelise17264:1d0dad1280d4037ccfd9d282458e3818-us1"
+        auth: "aelise17264:3a327a33d5807a379f956e807fb248d3-us1"
     }
 
     const request = https.request(url, options, function(response){
+        if (response.statusCode === 200){
+            res.sendFile(__dirname + '/success.html')
+        }else{
+            res.sendFile(__dirname + '/failure.html')
+            console.log(response.statusCode)
+        }
+
+        
         response.on("data", function(data){
             console.log(JSON.parse(data))
         })
@@ -57,5 +65,5 @@ app.listen(3000, function(){
 })
 
 
-// api key API key: 1d0dad1280d4037ccfd9d282458e3818-us1
+// api key API key: 3a327a33d5807a379f956e807fb248d3-us1
 // unique list id 632d88cfd9
